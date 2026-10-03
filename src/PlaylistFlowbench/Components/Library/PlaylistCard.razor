@@ -1,0 +1,43 @@
+@using PlaylistFlowbench.Models
+
+<!-- One playlist entry on the Library screen. Presentational only:
+     the Open button gets wired once the Playlist Overview route exists. -->
+<article aria-labelledby="@TitleId"
+         class="flex flex-col justify-between rounded bg-card p-5 ring-1 ring-line">
+    <div class="flex gap-4">
+        <div aria-hidden="true"
+             class="h-16 w-16 shrink-0 rounded-sm ring-1 ring-line"
+             style="background: linear-gradient(135deg, @Playlist.ArtworkFrom, @Playlist.ArtworkTo)"></div>
+        <div class="min-w-0">
+            <h3 id="@TitleId" class="truncate text-lg font-semibold text-ivory">
+                @Playlist.Title
+            </h3>
+            <p class="mt-0.5 text-sm text-muted">@Playlist.Meta</p>
+            <p class="mt-1 text-xs text-dim">@Playlist.EditedAgo</p>
+        </div>
+    </div>
+
+    <div class="mt-5 flex items-center justify-between border-t border-line pt-3.5">
+        <button type="button"
+                class="rounded-sm bg-elevated px-4 py-1.5 text-sm text-ivory hover:bg-divider">
+            Open
+        </button>
+        <button type="button"
+                aria-label="More actions for @Playlist.Title"
+                title="More actions"
+                class="flex h-8 w-8 items-center justify-center rounded-sm text-dim ring-1 ring-line hover:text-ivory">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+                <circle cx="2" cy="6" r="1.4" />
+                <circle cx="6" cy="6" r="1.4" />
+                <circle cx="10" cy="6" r="1.4" />
+            </svg>
+        </button>
+    </div>
+</article>
+
+@code {
+    [Parameter]
+    public PlaylistSummary Playlist { get; set; } = default!;
+
+    private string TitleId => $"playlist-{Playlist.Title.Replace(" ", "-").ToLowerInvariant()}";
+}

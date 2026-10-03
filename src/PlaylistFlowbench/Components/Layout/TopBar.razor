@@ -1,0 +1,49 @@
+<!-- Top toolbar from the Figma app shell (56px, glass over deep plum).
+     Search and action buttons are presentational until their
+     features land; the label keeps the search input accessible. -->
+<header class="flex h-14 shrink-0 items-center justify-between gap-6 border-b border-line bg-deep/95 px-6 backdrop-blur">
+    <div class="flex items-center gap-6">
+        <span class="font-mono text-sm font-bold tracking-widest text-ivory">FLOWBENCH</span>
+        <nav aria-label="Sections" class="hidden items-center gap-1 lg:flex">
+            <a href="/"
+               aria-current="page"
+               class="rounded-sm bg-elevated px-3 py-1.5 font-mono text-sm text-ivory ring-1 ring-divider">
+                Playlists
+            </a>
+            <span class="rounded-sm px-3 py-1.5 font-mono text-sm text-muted">Sequencer</span>
+            <span class="rounded-sm px-3 py-1.5 font-mono text-sm text-muted">Settings</span>
+        </nav>
+    </div>
+
+    <div class="hidden max-w-[496px] flex-1 md:block">
+        <label for="site-search" class="sr-only">Search playlists</label>
+        <div class="relative">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"
+                 aria-hidden="true" class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-dim">
+                <circle cx="5.5" cy="5.5" r="4" />
+                <line x1="8.8" y1="8.8" x2="12" y2="12" />
+            </svg>
+            <input id="site-search"
+                   type="search"
+                   placeholder="Search playlists"
+                   class="h-9 w-full rounded-sm border border-line bg-raised pl-9 pr-4 font-mono text-sm text-ivory placeholder:text-dim focus:outline-none focus:ring-1 focus:ring-divider" />
+        </div>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+        <button type="button"
+                class="flex h-8 items-center gap-1.5 rounded-sm bg-elevated px-3 font-mono text-sm text-muted ring-1 ring-line hover:text-ivory">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M5 6.5v-5M2.5 3.5 5 1l2.5 2.5M1.5 6.5v2h7v-2" />
+            </svg>
+            Import
+        </button>
+        <button type="button"
+                class="flex h-8 items-center gap-1.5 rounded-sm bg-ivory px-3.5 font-mono text-sm font-medium text-deep hover:bg-muted">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M5 1v8M1 5h8" />
+            </svg>
+            New Playlist
+        </button>
+    </div>
+</header>
