@@ -7,4 +7,8 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BlazorBlueprint.Icons.Lucide" Version="2.0.2" />
+  </ItemGroup>
+
 </Project>

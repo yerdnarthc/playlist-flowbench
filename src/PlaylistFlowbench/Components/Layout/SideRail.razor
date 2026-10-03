@@ -1,4 +1,5 @@
 <!-- Icon navigation rail from the Figma app shell (68px, fixed left).
+     Icons come from the Lucide Blazor package (BlazorBlueprint.Icons.Lucide).
      Only Library routes anywhere yet; the other icons become
      NavLinks as their screens land. -->
 <aside class="flex h-screen w-[68px] shrink-0 flex-col items-center justify-between border-r border-line bg-deep py-4">
@@ -17,54 +18,30 @@
                aria-label="Playlist library"
                title="Playlist library"
                class="flex h-10 w-11 items-center justify-center rounded-sm bg-elevated text-ivory ring-1 ring-divider">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <rect x="1.5" y="1.5" width="5" height="5" rx="1" />
-                    <rect x="9.5" y="1.5" width="5" height="5" rx="1" />
-                    <rect x="1.5" y="9.5" width="5" height="5" rx="1" />
-                    <rect x="9.5" y="9.5" width="5" height="5" rx="1" />
-                </svg>
+                <LucideIcon Name="library" Size="16" StrokeWidth="1.5" />
             </a>
             <button type="button"
-                    aria-label="Sequencer (coming soon)"
-                    title="Sequencer (coming soon)"
+                    aria-label="Version control (coming soon)"
+                    title="Version control (coming soon)"
                     class="flex h-10 w-11 items-center justify-center rounded-sm text-dim hover:text-ivory">
-                <svg width="17" height="15" viewBox="0 0 17 15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <rect x="1" y="4" width="6" height="6" rx="1" />
-                    <rect x="10" y="4" width="6" height="6" rx="1" />
-                    <line x1="7" y1="7" x2="10" y2="7" />
-                </svg>
+                <LucideIcon Name="git-branch" Size="16" StrokeWidth="1.5" />
             </button>
             <button type="button"
-                    aria-label="Versions (coming soon)"
-                    title="Versions (coming soon)"
+                    aria-label="History (coming soon)"
+                    title="History (coming soon)"
                     class="flex h-10 w-11 items-center justify-center rounded-sm text-dim hover:text-ivory">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <path d="M9 2 16 6 9 10 2 6Z" />
-                    <path d="M2 9.5 9 13.5 16 9.5" />
-                </svg>
+                <LucideIcon Name="history" Size="16" StrokeWidth="1.5" />
             </button>
             <button type="button"
-                    aria-label="Connections (coming soon)"
-                    title="Connections (coming soon)"
+                    aria-label="Settings (coming soon)"
+                    title="Settings (coming soon)"
                     class="flex h-10 w-11 items-center justify-center rounded-sm text-dim hover:text-ivory">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <circle cx="4" cy="7.5" r="2.5" />
-                    <circle cx="11" cy="7.5" r="2.5" />
-                </svg>
+                <LucideIcon Name="settings" Size="16" StrokeWidth="1.5" />
             </button>
         </nav>
     </div>
 
     <div class="flex flex-col items-center gap-3">
-        <button type="button"
-                aria-label="Settings (coming soon)"
-                title="Settings (coming soon)"
-                class="flex h-9 w-9 items-center justify-center rounded-sm text-dim hover:text-ivory">
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <circle cx="7.5" cy="7.5" r="2" />
-                <path d="M7.5 1.5v2M7.5 11.5v2M1.5 7.5h2M11.5 7.5h2M3.3 3.3l1.4 1.4M10.3 10.3l1.4 1.4M11.7 3.3l-1.4 1.4M4.7 10.3 3.3 11.7" />
-            </svg>
-        </button>
         <div aria-hidden="true"
              class="flex h-8 w-8 items-center justify-center rounded-full bg-ivory text-deep ring-1 ring-divider">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
