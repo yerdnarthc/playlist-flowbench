@@ -1,7 +1,39 @@
 ﻿@page "/"
+@using PlaylistFlowbench.Components.Library
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Playlists</PageTitle>
 
-<h1>Welcome to Playlist Flowbench</h1>
+<div class="mx-auto w-full max-w-[1280px] px-6 py-8">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+            <h1 class="text-3xl font-bold text-ivory">Playlists</h1>
+            <p class="mt-1 text-sm text-muted">
+                Select a playlist to start sequencing or adjust playback flow.
+            </p>
+        </div>
 
-This project is still in development :)
+        <!-- Visual only for now: cards carry no status to filter by yet. -->
+        <div role="group" aria-label="Filter playlists"
+             class="flex items-center gap-1 rounded-sm border border-line bg-deep p-1">
+            <button type="button"
+                    class="rounded-sm bg-elevated px-3 py-1 text-xs text-ivory">
+                All
+            </button>
+            <button type="button"
+                    class="rounded-sm px-3 py-1 text-xs text-muted hover:text-ivory">
+                In Progress
+            </button>
+            <button type="button"
+                    class="rounded-sm px-3 py-1 text-xs text-muted hover:text-ivory">
+                Completed
+            </button>
+        </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        @foreach (var playlist in PlaylistLibraryData.Playlists)
+        {
+            <PlaylistCard Playlist="playlist" />
+        }
+    </div>
+</div>

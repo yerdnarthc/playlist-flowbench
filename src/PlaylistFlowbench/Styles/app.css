@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Design tokens from docs/context.md §23-24 + Figma prototype.
+   Tailwind v4 @theme turns these into utilities like
+   bg-surface, bg-deep, border-line, text-ivory, font-mono. */
+@theme {
+  --color-deep: #100b1e;
+  --color-surface: #26212f;
+  --color-card: #1e182c;
+  --color-raised: #2e2839;
+  --color-elevated: #423b50;
+  --color-line: #423b50;
+  --color-divider: #5c5470;
+  --color-ivory: #faf0e6;
+  --color-muted: #b9b4c7;
+  --color-dim: #70687f;
+
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Keep the default Blazor error UI (template behavior, not app styling). */
+#blazor-error-ui {
+  background: lightyellow;
+  bottom: 0;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  display: none;
+  left: 0;
+  padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+  cursor: pointer;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.5rem;
+}
