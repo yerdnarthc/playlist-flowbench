@@ -1,10 +1,14 @@
 using PlaylistFlowbench.Components;
+using PlaylistFlowbench.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Mock data until EF Core + integrations land. Swap this one line for the real thing.
+builder.Services.AddSingleton<IPlaylistRepository, MockPlaylistRepository>();
 
 var app = builder.Build();
 

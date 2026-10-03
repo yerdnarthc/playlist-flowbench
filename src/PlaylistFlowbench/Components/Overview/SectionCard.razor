@@ -1,0 +1,50 @@
+@using PlaylistFlowbench.Models
+
+<!-- One section block: header bar, track rows, and the "+ N more" footer.
+     The Expand button is visual-only until sections get collapse state. -->
+<section aria-label="@Section.Name" class="overflow-hidden rounded-sm border border-line bg-card">
+    <header class="flex items-center justify-between gap-4 border-b border-line bg-raised px-3 py-2.5">
+        <h3 class="text-sm font-semibold text-ivory">
+            @Section.Name
+            <span class="ml-2 font-normal text-dim">[@Section.TrackCount tracks]</span>
+        </h3>
+        <p class="text-sm tabular-nums text-muted">
+            @Section.DurationLabel
+            <span class="mx-1 text-dim">·</span>
+            <span class="text-sage">@Section.BpmRangeLabel</span>
+        </p>
+    </header>
+
+    <ol class="divide-y divide-line">
+        @foreach (var track in Section.ShownTracks)
+        {
+            <li class="flex items-center justify-between gap-4 px-3 py-2.5">
+                <p class="min-w-0 truncate text-sm">
+                    <span class="mr-3 tabular-nums text-dim">@track.Position.ToString("00")</span>
+                    <span class="text-ivory">@track.Title</span>
+                    <span class="text-dim"> · @track.Artist</span>
+                </p>
+                <p class="flex shrink-0 items-center gap-6 text-sm tabular-nums">
+                    <span class="text-sage">@track.MusicalKey</span>
+                    <span class="text-ivory">@(track.Bpm is null ? "–" : $"{track.Bpm} BPM")</span>
+                    <span class="text-dim">@track.Duration</span>
+                </p>
+            </li>
+        }
+    </ol>
+
+    @if (Section.HiddenCount > 0)
+    {
+        <div class="flex items-center justify-between gap-4 bg-surface/40 px-3 py-2.5">
+            <p class="truncate text-sm italic text-dim">@Section.HiddenLabel</p>
+            <button type="button" class="shrink-0 text-sm text-ivory underline underline-offset-4 hover:text-muted">
+                Expand
+            </button>
+        </div>
+    }
+</section>
+
+@code {
+    [Parameter]
+    public SectionSummary Section { get; set; } = default!;
+}

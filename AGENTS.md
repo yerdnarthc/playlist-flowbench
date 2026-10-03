@@ -15,6 +15,7 @@
 
 ## Entrypoints
 - `src/PlaylistFlowbench/Program.cs` → `Components/App.razor` → `Components/Routes.razor` → `Components/Pages/` + `Components/Layout/`.
+- Routes: `/` Library, `/playlists/{slug}` Overview. Pages read data via `IPlaylistRepository` (mock in `Services/`), never static data or markup-hardcoded content.
 - Static assets: `wwwroot/app.css` + scoped `*.razor.css`.
 
 ## Sources of truth

@@ -1,0 +1,97 @@
+@page "/playlists/{Slug}"
+@using PlaylistFlowbench.Components.Overview
+@using PlaylistFlowbench.Services
+
+<PageTitle>@(overview?.Title ?? "Playlist overview")</PageTitle>
+
+@if (overview is null)
+{
+    <div class="mx-auto w-full max-w-[1280px] px-6 py-16 text-center">
+        <p class="text-lg text-ivory">Playlist not found in mock data.</p>
+        <a href="/" class="mt-4 inline-block text-sm text-muted underline underline-offset-4 hover:text-ivory">
+            Back to library
+        </a>
+    </div>
+}
+else
+{
+    <div class="mx-auto w-full max-w-[1280px] px-6 pb-16 pt-6">
+        <div class="flex items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-1.5 text-xs tracking-widest text-dim hover:text-ivory">
+                <LucideIcon Name="arrow-left" Size="14" StrokeWidth="1.5" />
+                BACK TO LIBRARY
+            </a>
+            <span class="text-xs tracking-widest text-dim">@overview.SourceLabel</span>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+            <div>
+                <h1 class="flex flex-wrap items-center gap-3 text-4xl font-bold text-ivory">
+                    @overview.Title
+                    <span class="rounded-sm bg-[#352f44] px-2 py-0.5 font-mono text-sm font-medium text-plum-accent ring-1 ring-line">
+                        @overview.Version
+                    </span>
+                </h1>
+                <p class="mt-1.5 text-sm text-muted">@overview.Description</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button type="button"
+                        class="flex h-9 items-center gap-2 rounded-sm bg-raised px-4 font-mono text-sm text-muted ring-1 ring-divider hover:text-ivory">
+                    <LucideIcon Name="git-compare" Size="15" StrokeWidth="1.5" />
+                    Compare Versions
+                </button>
+                <button type="button"
+                        class="flex h-9 items-center gap-2 rounded-sm bg-ivory px-4 font-mono text-sm font-medium text-deep hover:bg-muted">
+                    <LucideIcon Name="workflow" Size="15" StrokeWidth="1.5" />
+                    Open Flowbench
+                </button>
+            </div>
+        </div>
+
+        <p class="mt-3 text-sm">
+            <span class="font-medium text-ivory">@overview.TrackCountLabel</span>
+            <span class="mx-2 text-dim">·</span>
+            <span class="text-muted">@overview.TotalDuration</span>
+            <span class="mx-2 text-dim">·</span>
+            <span class="text-muted">@overview.BpmRange</span>
+            <span class="mx-2 text-dim">·</span>
+            <span class="text-plum-accent">@overview.Sections.Count Sections</span>
+        </p>
+
+        <div class="mt-4 border-t border-line pt-4">
+            <EnergyCurve Values="overview.EnergyCurve"
+                         TrackCountLabel="@overview.TrackCountLabel.Split(' ')[0]"
+                         Segments="overview.Segments" />
+        </div>
+
+        <div class="mt-6 flex items-center justify-between gap-4">
+            <h2 class="text-sm font-semibold tracking-widest text-ivory">SECTIONS &amp; TRACK SEQUENCE</h2>
+            <span class="text-xs text-dim">@totalTracks of @totalTracks tracks</span>
+        </div>
+
+        <div class="mt-3 space-y-3">
+            @foreach (var section in overview.Sections)
+            {
+                <SectionCard Section="section" />
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Slug { get; set; } = string.Empty;
+
+    [Inject]
+    public IPlaylistRepository Repository { get; set; } = default!;
+
+    private Models.PlaylistOverview? overview;
+    private int totalTracks;
+
+    protected override void OnParametersSet()
+    {
+        overview = Repository.GetOverview(Slug);
+        totalTracks = overview?.Sections.Sum(s => s.TrackCount) ?? 0;
+    }
+}

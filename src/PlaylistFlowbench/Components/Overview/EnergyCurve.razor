@@ -1,0 +1,65 @@
+@using PlaylistFlowbench.Models
+
+<!-- Sparkline of per-track energy plus the segment guides underneath.
+     Pure function of Values/Segments: no state, no interactivity. -->
+<figure class="rounded-sm border border-line bg-card p-3">
+    <div class="flex items-center justify-between px-1 pb-2">
+        <figcaption class="text-xs tracking-widest text-muted">ENERGY CURVE OVERVIEW</figcaption>
+        <span class="text-xs tracking-widest text-dim">@TrackCountLabel TRACKS TIMELINE</span>
+    </div>
+
+    <svg viewBox="0 0 1000 64" preserveAspectRatio="none" role="img"
+         aria-label="Energy curve across @TrackCountLabel tracks"
+         class="h-16 w-full rounded-sm bg-surface/70 p-2">
+        <defs>
+            <linearGradient id="energy-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#8c789c" stop-opacity="0.18" />
+                <stop offset="1" stop-color="#8c789c" stop-opacity="0" />
+            </linearGradient>
+        </defs>
+        <polygon points="@AreaPoints" fill="url(#energy-fill)" />
+        <polyline points="@LinePoints" fill="none" stroke="#8c789c" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />
+    </svg>
+
+    <div class="flex divide-x divide-line pt-2">
+        @foreach (var segment in Segments)
+        {
+            <div class="flex flex-1 items-center justify-between gap-2 px-3">
+                <span class="text-sm text-muted">@segment.Name</span>
+                @if (segment.IsPeak)
+                {
+                    <span class="text-sm text-copper">@segment.BpmLabel</span>
+                }
+                else
+                {
+                    <span class="text-sm text-dim">@segment.BpmLabel</span>
+                }
+            </div>
+        }
+    </div>
+</figure>
+
+@code {
+    [Parameter]
+    public IReadOnlyList<double> Values { get; set; } = Array.Empty<double>();
+
+    [Parameter]
+    public string TrackCountLabel { get; set; } = "0";
+
+    [Parameter]
+    public IReadOnlyList<EnergySegment> Segments { get; set; } = Array.Empty<EnergySegment>();
+
+    // Map value index to viewBox X (0..1000) and normalized value to Y (60..8).
+    private double X(int i) => Values.Count < 2 ? 500 : i * 1000.0 / (Values.Count - 1);
+
+    private static double Y(double value) => 60 - value * 52;
+
+    private string LinePoints => Values.Count < 2
+        ? string.Empty
+        : string.Join(" ", Values.Select((value, i) => $"{X(i):F1},{Y(value):F1}"));
+
+    private string AreaPoints => Values.Count < 2
+        ? string.Empty
+        : $"0,64 {LinePoints} 1000,64";
+}
