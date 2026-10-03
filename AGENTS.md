@@ -34,3 +34,18 @@
 - Palette + typography live in `docs/context.md` §23–24: dark plum surfaces (`#352F44/#26212F`), warm ivory (`#FAF0E6`), muted accents only; predominantly monospace (IBM Plex / JetBrains / Geist Mono).
 - Glassmorphism only for floating overlays (inspector, toolbar, menus) — track cards stay solid.
 - Desktop-first, primary target `1440×1024`.
+
+## Git Commits
+
+After completing every task, recommend a Conventional Commit message based on the changes implemented.
+
+Format:
+`<type>(<scope>): <description>`
+
+Examples:
+- `feat(editor): add draggable track cards`
+- `feat(navigation): add application navigation`
+- `refactor(ui): migrate styles to tailwind`
+- `fix(editor): correct track reordering behavior`
+
+Do not create or execute the commit unless explicitly requested. Only provide the recommended commit message at the end of the response.
