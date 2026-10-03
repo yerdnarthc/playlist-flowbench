@@ -5,6 +5,7 @@
 - Blazor **Interactive Server only** (`AddInteractiveServerComponents` in `Program.cs`). No WASM, no controllers, no EF Core yet.
 - Styling: Tailwind CSS v4 via `package.json` in `src/PlaylistFlowbench` (`tailwindcss` + `@tailwindcss/cli`). Source is `Styles/app.css` (`@theme` tokens → `bg-deep/bg-surface/bg-card/text-ivory/...`); generated output is `wwwroot/app.css` — never edit it by hand, rebuild instead.
 - Solution uses new `.slnx` format (`playlist-flowbench.slnx`), not `.sln`. Build/run via `dotnet` CLI; `bin/`/`obj/` are gitignored build output, never edit.
+- Icons: Lucide via `BlazorBlueprint.Icons.Lucide` (`<LucideIcon Name="library" Size="16" StrokeWidth="1.5" />`, kebab-case names from lucide.dev, inherits `currentColor`). Namespace is in `Components/_Imports.razor` — do not hand-write SVGs when a Lucide name exists.
 
 ## Commands
 - Run dev server: `dotnet run --project src/PlaylistFlowbench` → http `http://localhost:5019`, https `https://localhost:7095` (see `Properties/launchSettings.json`).
