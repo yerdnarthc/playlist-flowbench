@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using PlaylistFlowbench.Components.Library
+@using PlaylistFlowbench.Models
+@using PlaylistFlowbench.Services
+@inject IPlaylistRepository Repository
 
 <PageTitle>Playlists</PageTitle>
 
@@ -31,9 +34,18 @@
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        @foreach (var playlist in PlaylistLibraryData.Playlists)
+        @foreach (var playlist in playlists)
         {
             <PlaylistCard Playlist="playlist" />
         }
     </div>
 </div>
+
+@code {
+    private IReadOnlyList<PlaylistSummary> playlists = Array.Empty<PlaylistSummary>();
+
+    protected override void OnInitialized()
+    {
+        playlists = Repository.GetPlaylists();
+    }
+}

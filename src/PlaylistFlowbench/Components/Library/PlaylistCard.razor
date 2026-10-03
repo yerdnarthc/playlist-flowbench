@@ -1,7 +1,7 @@
 @using PlaylistFlowbench.Models
 
-<!-- One playlist entry on the Library screen. Presentational only:
-     the Open button gets wired once the Playlist Overview route exists. -->
+<!-- One playlist entry on the Library screen. Open navigates to the
+     Overview route; the "..." menu is visual-only until card actions land. -->
 <article aria-labelledby="@TitleId"
          class="flex flex-col justify-between rounded bg-card p-5 ring-1 ring-line">
     <div class="flex gap-4">
@@ -18,10 +18,10 @@
     </div>
 
     <div class="mt-5 flex items-center justify-between border-t border-line pt-3.5">
-        <button type="button"
-                class="rounded-sm bg-elevated px-4 py-1.5 text-sm text-ivory hover:bg-divider">
+        <a href="@($"/playlists/{Playlist.Slug}")"
+           class="rounded-sm bg-elevated px-4 py-1.5 text-sm text-ivory hover:bg-divider">
             Open
-        </button>
+        </a>
         <button type="button"
                 aria-label="More actions for @Playlist.Title"
                 title="More actions"
@@ -39,5 +39,5 @@
     [Parameter]
     public PlaylistSummary Playlist { get; set; } = default!;
 
-    private string TitleId => $"playlist-{Playlist.Title.Replace(" ", "-").ToLowerInvariant()}";
+    private string TitleId => $"playlist-{Playlist.Slug}";
 }

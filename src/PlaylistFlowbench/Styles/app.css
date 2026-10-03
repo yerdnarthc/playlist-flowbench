@@ -15,6 +15,11 @@
   --color-muted: #b9b4c7;
   --color-dim: #70687f;
 
+  /* Muted accents from docs/context.md §23 — the only non-neutral colors. */
+  --color-plum-accent: #8c789c;
+  --color-copper: #b47d5f;
+  --color-sage: #738b7b;
+
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
